@@ -5,12 +5,9 @@ load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 # BEGIN: Java dependencies
 http_archive(
     name = "rules_java",
-    sha256 = "1969a89e8da396eb7754fd0247b7df39b6df433c3dcca0095b4ba30a5409cc9d",
-    strip_prefix = "rules_java-32ddd6c4f0ad38a54169d049ec05febc393b58fc",
-    urls = [
-        "https://mirror.bazel.build/github.com/bazelbuild/rules_java/archive/32ddd6c4f0ad38a54169d049ec05febc393b58fc.tar.gz",
-        "https://github.com/bazelbuild/rules_java/archive/32ddd6c4f0ad38a54169d049ec05febc393b58fc.tar.gz",
-    ],
+    strip_prefix = "rules_java-9eb38ebffbaf4414fa3d2292b28e604a256dd5a5",
+    sha256 = "a0adff084a3e8ffac3b88582b208897cd615a29620aa5416337df93a3d3bfd15",
+    url = "https://github.com/bazelbuild/rules_java/archive/9eb38ebffbaf4414fa3d2292b28e604a256dd5a5.tar.gz",
 )
 
 load("@rules_java//java:repositories.bzl", "rules_java_dependencies", "rules_java_toolchains")
@@ -102,25 +99,25 @@ go_repository(
 
 
 # BEGIN: Typescript dependencies
-# http_archive(
-#     name = "build_bazel_rules_nodejs",
-#     urls = [
-#         "https://github.com/bazelbuild/rules_nodejs/releases/download/0.35.0/rules_nodejs-0.35.0.tar.gz",
-#     ],
-#     sha256 = "6625259f9f77ef90d795d20df1d0385d9b3ce63b6619325f702b6358abb4ab33",
-# )
+http_archive(
+    name = "build_bazel_rules_nodejs",
+    urls = [
+        "https://github.com/bazelbuild/rules_nodejs/releases/download/0.35.0/rules_nodejs-0.35.0.tar.gz",
+    ],
+    sha256 = "6625259f9f77ef90d795d20df1d0385d9b3ce63b6619325f702b6358abb4ab33",
+)
 
-# load("@build_bazel_rules_nodejs//:defs.bzl", "node_repositories", "yarn_install")
+load("@build_bazel_rules_nodejs//:defs.bzl", "node_repositories", "yarn_install")
 
-# yarn_install(
-#     name = "npm",
-#     package_json = "//typescript:package.json",
-#     yarn_lock = "//typescript:yarn.lock",
-# )
+yarn_install(
+    name = "npm",
+    package_json = "//typescript:package.json",
+    yarn_lock = "//typescript:yarn.lock",
+)
 
-# load("@npm//:install_bazel_dependencies.bzl", "install_bazel_dependencies")
-# install_bazel_dependencies()
+load("@npm//:install_bazel_dependencies.bzl", "install_bazel_dependencies")
+install_bazel_dependencies()
 
-# load("@npm_bazel_typescript//:index.bzl", "ts_setup_workspace")
-# ts_setup_workspace()
+load("@npm_bazel_typescript//:index.bzl", "ts_setup_workspace")
+ts_setup_workspace()
 # END: Typescript dependencies
